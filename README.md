@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## overview
+This project is a web application designed for MagicSlides.app as part of the Full-Stack Engineer Intern assignment. The application enables users to log in using Google OAuth, fetch their last X emails from Gmail, and classify them into different categories using OpenAI GPT-4.
 
-## Getting Started
+## features
+- User Authentication: Log in using Google OAuth.
+- Email Fetching: Retrieve the user’s last X emails from Gmail (X = 15 by default).
+- Email Classification: Classify emails into categories such as Important, Promotions, Social, Marketing, and Spam using OpenAI GPT-4.
+- Local Storage: Store OpenAI API key and fetched emails in localStorage.
 
-First, run the development server:
+## Technologies Used
+- Frontend: Next.js, Tailwind CSS, shadcnUI
+- Backend: API routes in Next.js
+- Authentication: Google OAuth
+- APIs: Gmail API, OpenAI GPT-4
 
+## Setup and Installation
+Clone the repo
+```bash
+[git clone https://github.com/your-username/magicslides-app.git](https://github.com/tejasSanap/checkMails-assignment.git)
+cd checkMails-assignment
+```
+Install Dependencies
+```bash
+npm install
+# or
+yarn install
+```
+Environment Variables
+Create a .env.local file in the root directory and add the following environment variables:
+
+```bash
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
+Run the Development Server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## google oauth setup
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Create Google Credentials:
 
-## Learn More
+1 Go to Google Cloud Console.
+  - Navigate to the Credentials tab.
+  - Click Create Credentials and select OAuth 2.0 Client IDs.
+  - Choose Web application as the application type.
+2 Configure Authorized JavaScript Origins and Redirect URIs:
+  - Under Authorized JavaScript origins, add:
+    - http://localhost:3000 (for local development)
+    - Your deployed URL (e.g., https://your-deployed-url.com)
+  - Under Authorized redirect URIs, add:
+    - http://localhost:3000/api/auth/callback/google (for local development)
+    - Your deployed URL's callback endpoint (e.g., https://your-deployed-url.com/api/auth/callback/google)
 
-To learn more about Next.js, take a look at the following resources:
+3 Enable Required APIs:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - Go to the Library section in the Google Cloud Console.
+  - Enable Google+ API and Gmail API.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4.Configure OAuth Consent Screen:
 
-## Deploy on Vercel
+  - Navigate to the OAuth consent screen tab in the Google Cloud Console.
+  - Add a test email address to the Test users section to allow login without verification.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Set Environment Variables:
+   - Replace your-google-client-id and your-google-client-secret with your actual credentials.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## OpenAI API Setup
+
+To use OpenAI GPT-4 for email classification, follow these steps:
+
+1. **Create an OpenAI Account**:
+   - If you don't already have an OpenAI account, sign up at [OpenAI](https://www.openai.com/).
+
+2. **Generate an API Key**:
+   - After logging in, go to the [OpenAI API Keys page](https://platform.openai.com/account/api-keys).
+   - Click **Create API Key** to generate a new API key.
+   - Copy the generated API key.
+   - 
+3. **Add API Key to the Application**:
+   - Open your application and navigate to the home page.
+   - You will see an input field to paste your OpenAI API key. 
+   - Paste the API key into this field and click **Continue** to proceed to the email check page.
+
+4. **Add API Key to Environment Variables (Optional)**:
+   - For development purposes, you can also add the API key to your `.env.local` file:
+     ```
+     OPENAI_API_KEY=your-openai-api-key
+     ```
+     Replace `your-openai-api-key` with the API key you copied.
+
+
