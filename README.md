@@ -1,5 +1,5 @@
 ## overview
-This project is a web application designed for MagicSlides.app as part of the Full-Stack Engineer Intern assignment. The application enables users to log in using Google OAuth, fetch their last X emails from Gmail, and classify them into different categories using OpenAI GPT-4.
+This project is a web application designed for MagicSlides.app as part of the Full-Stack Engineer assignment. The application enables users to log in using Google OAuth, fetch their last X emails from Gmail, and classify them into different categories using OpenAI GPT-4.
 
 ## features
 - User Authentication: Log in using Google OAuth.
